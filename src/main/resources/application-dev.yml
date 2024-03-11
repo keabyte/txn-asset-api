@@ -2,7 +2,7 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:8301/txn-asset-api
+    url: jdbc:postgresql://localhost:8301/txn-asset-api-db
     username: postgres
     password: postgres
 
