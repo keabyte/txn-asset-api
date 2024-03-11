@@ -1,0 +1,10 @@
+# VM options: -Dspring.profiles.active=dev
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:8301/txn-asset-api
+    username: postgres
+    password: postgres
+
+server:
+  port : 8300
