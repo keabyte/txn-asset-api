@@ -15,7 +15,7 @@ class AssetController(private val assetService: AssetService) {
     }
 
     @PostMapping
-    fun createAsset(request: CreateAssetRequest): Asset {
+    fun createAsset(@RequestBody request: CreateAssetRequest): Asset {
         return assetService.createAsset(request).toModel()
     }
 }

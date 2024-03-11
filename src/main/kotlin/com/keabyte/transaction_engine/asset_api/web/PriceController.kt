@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 class PriceController(private val priceService: PriceService) {
 
     @PostMapping("/assets/{assetCode}/prices")
-    fun createPrice(@PathVariable assetCode: String, request: CreatePriceRequest): Price {
+    fun createPrice(@PathVariable assetCode: String, @RequestBody request: CreatePriceRequest): Price {
         return priceService.createPrice(request.withAssetCode(assetCode)).toModel()
     }
 

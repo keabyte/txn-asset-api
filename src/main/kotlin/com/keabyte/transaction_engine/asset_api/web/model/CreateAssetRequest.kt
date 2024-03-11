@@ -8,13 +8,13 @@ import java.time.OffsetDateTime
 data class CreateAssetRequest(
     val assetCode: String,
     val name: String,
-    val foundedDate: OffsetDateTime,
+    val foundedDate: OffsetDateTime? = null,
     val dividendYield: BigDecimal,
     val description: String,
-    val websiteUrl: String?,
+    val websiteUrl: String? = null,
     val type: AssetType,
     val roundingScale: Int,
-    val currency: String?
+    val currency: String? = null
 ) {
     fun toEntity() = AssetEntity(
         assetCode = assetCode,
