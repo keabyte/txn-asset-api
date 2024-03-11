@@ -8,7 +8,7 @@ data class Asset(
     val assetCode: String,
     val name: String,
     val createdDate: OffsetDateTime,
-    val foundedDate: OffsetDateTime,
+    val foundedDate: OffsetDateTime?,
     val dividendYield: BigDecimal,
     val description: String,
     val websiteUrl: String?,

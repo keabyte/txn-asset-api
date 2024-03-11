@@ -22,13 +22,13 @@ data class AssetEntity(
     @Enumerated(EnumType.STRING)
     val type: AssetType,
     val roundingScale: Int,
-    val currency: String?
+    val currency: String? = null
 ) {
     fun toModel() = Asset(
         assetCode = assetCode,
         name = name,
         createdDate = createdDate!!,
-        foundedDate = foundedDate!!,
+        foundedDate = foundedDate,
         dividendYield = dividendYield,
         description = description,
         websiteUrl = websiteUrl,
