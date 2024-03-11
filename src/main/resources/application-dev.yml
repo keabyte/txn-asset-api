@@ -7,6 +7,11 @@ spring:
     password: postgres
   kafka:
     bootstrap-servers: localhost:9092
+    producer:
+      default:
+        partitions: 1
+        replicas: 1
+
 
 server:
   port: 8300

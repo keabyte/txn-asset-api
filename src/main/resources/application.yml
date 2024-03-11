@@ -6,7 +6,14 @@ spring:
   kafka:
     producer:
       topic:
-        prices:
-          name: prices
+        default:
           partitions: 10
           replicas: 3
+        prices:
+          name: prices
+          partitions: ${spring.kafka.producer.default.partitions}
+          replicas: ${spring.kafka.producer.default.replicas}
+        assets:
+          name: assets
+          partitions: ${spring.kafka.producer.default.partitions}
+          replicas: ${spring.kafka.producer.default.replicas}

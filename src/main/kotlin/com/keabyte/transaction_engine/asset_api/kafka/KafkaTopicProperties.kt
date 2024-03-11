@@ -5,7 +5,8 @@ import org.springframework.boot.context.properties.bind.ConstructorBinding
 
 @ConfigurationProperties(prefix = "spring.kafka.producer.topic")
 data class KafkaTopicProperties @ConstructorBinding constructor(
-    val prices: TopicConfiguration
+    val prices: TopicConfiguration,
+    val assets: TopicConfiguration
 )
 
 data class TopicConfiguration(

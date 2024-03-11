@@ -3,8 +3,10 @@ package com.keabyte.transaction_engine.asset_api.web
 import com.keabyte.transaction_engine.asset_api.service.PriceService
 import com.keabyte.transaction_engine.asset_api.web.model.CreatePriceRequest
 import com.keabyte.transaction_engine.asset_api.web.model.Price
+import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.*
 
+@Tag(name = "Price")
 @RestController
 @RequestMapping
 class PriceController(private val priceService: PriceService) {
