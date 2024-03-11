@@ -9,6 +9,7 @@ import com.keabyte.transaction_engine.asset_api.web.model.CreatePriceRequest
 import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
 import org.assertj.core.api.Assertions.assertThat
+import org.hamcrest.Matchers.equalTo
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import java.math.BigDecimal
@@ -61,6 +62,8 @@ class PriceControllerTest : IntegrationTest() {
             .post("/assets/ETH/prices")
             .then()
             .statusCode(200)
+            .body("price", equalTo(3000.00f))
+            .body("currency", equalTo("USD"))
 
         val price = priceRepository.findLatestPriceForAsset("ETH")
         assertThat(price).isPresent

@@ -8,6 +8,7 @@ import com.keabyte.transaction_engine.asset_api.web.model.CreateAssetRequest
 import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
 import org.assertj.core.api.Assertions.assertThat
+import org.hamcrest.Matchers.equalTo
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import java.math.BigDecimal
@@ -65,6 +66,10 @@ class AssetControllerTest : IntegrationTest() {
             .post("/assets")
             .then()
             .statusCode(200)
+            .body("assetCode", equalTo("SPY"))
+            .body("name", equalTo("SPDR S&P 500 ETF Trust"))
+            .body("type", equalTo("STOCK"))
+
 
         val asset = assetRepository.findByAssetCode("SPY")
         assertThat(asset).isPresent
