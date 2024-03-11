@@ -1,6 +1,7 @@
 package com.keabyte.transaction_engine.asset_api.service
 
 import com.keabyte.transaction_engine.asset_api.exception.BusinessException
+import com.keabyte.transaction_engine.asset_api.kafka.KafkaProducer
 import com.keabyte.transaction_engine.asset_api.repository.AssetRepository
 import com.keabyte.transaction_engine.asset_api.repository.entity.AssetEntity
 import com.keabyte.transaction_engine.asset_api.type.AssetType
@@ -9,7 +10,7 @@ import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
-class AssetService(private val assetRepository: AssetRepository) {
+class AssetService(private val assetRepository: AssetRepository, private val kafkaProducer: KafkaProducer) {
 
     @Transactional
     fun findByAssetCode(assetCode: String): AssetEntity {
@@ -19,7 +20,9 @@ class AssetService(private val assetRepository: AssetRepository) {
 
     @Transactional
     fun createAsset(request: CreateAssetRequest): AssetEntity {
-        return assetRepository.save(request.toEntity())
+        val asset = assetRepository.save(request.toEntity())
+        kafkaProducer.sendAsset(asset.toModel())
+        return asset
     }
 
     @Transactional

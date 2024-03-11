@@ -5,6 +5,8 @@ spring:
     url: jdbc:postgresql://localhost:8301/txn-asset-api-db
     username: postgres
     password: postgres
+  kafka:
+    bootstrap-servers: localhost:9092
 
 server:
-  port : 8300
+  port: 8300

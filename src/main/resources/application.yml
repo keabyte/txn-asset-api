@@ -3,3 +3,10 @@ spring:
     driver-class-name: org.postgresql.Driver
   liquibase:
     change-log: classpath:db/changelog/liquibase-changelog.xml
+  kafka:
+    producer:
+      topic:
+        prices:
+          name: prices
+          partitions: 10
+          replicas: 3
