@@ -19,11 +19,12 @@ data class PriceEntity(
     val asset: AssetEntity,
     val price: BigDecimal,
     val currency: String
-)  {
+) {
 
     fun toModel() = Price(
         effectiveDate = effectiveDate.toString(),
         price = price,
-        currency = currency
+        currency = currency,
+        assetCode = asset.assetCode
     )
 }

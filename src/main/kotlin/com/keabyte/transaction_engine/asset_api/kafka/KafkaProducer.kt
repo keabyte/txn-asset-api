@@ -2,6 +2,7 @@ package com.keabyte.transaction_engine.asset_api.kafka
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.keabyte.transaction_engine.asset_api.web.model.Asset
+import com.keabyte.transaction_engine.asset_api.web.model.Price
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.SendResult
@@ -18,5 +19,9 @@ class KafkaProducer(private val kafkaTemplate: KafkaTemplate<String, String>, pr
 
     fun sendAsset(asset: Asset): SendResult<String, String> {
         return send("assets", asset.assetCode, objectMapper.writeValueAsString(asset))
+    }
+
+    fun sendPrice(price: Price): SendResult<String, String> {
+        return send("prices", price.assetCode, objectMapper.writeValueAsString(price))
     }
 }

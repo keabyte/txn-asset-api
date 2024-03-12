@@ -1,6 +1,7 @@
 package com.keabyte.transaction_engine.asset_api.service
 
 import com.keabyte.transaction_engine.asset_api.exception.BusinessException
+import com.keabyte.transaction_engine.asset_api.kafka.KafkaProducer
 import com.keabyte.transaction_engine.asset_api.repository.PriceRepository
 import com.keabyte.transaction_engine.asset_api.repository.entity.PriceEntity
 import com.keabyte.transaction_engine.asset_api.web.model.CreatePriceRequest
@@ -8,7 +9,11 @@ import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
-class PriceService(private val assetService: AssetService, private val priceRepository: PriceRepository) {
+class PriceService(
+    private val assetService: AssetService,
+    private val priceRepository: PriceRepository,
+    private val kafkaProducer: KafkaProducer
+) {
 
     @Transactional
     fun createPrice(request: CreatePriceRequest): PriceEntity {
@@ -19,6 +24,7 @@ class PriceService(private val assetService: AssetService, private val priceRepo
             price = request.price,
             currency = request.currency
         )
+        kafkaProducer.sendPrice(price.toModel())
         return priceRepository.save(price)
     }
 

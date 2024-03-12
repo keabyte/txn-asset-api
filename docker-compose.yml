@@ -3,7 +3,7 @@ version: '3'
 services:
   db:
     image: postgres:16.2
-    container_name: txn-asset-api-db
+    container_name: txn-asset-db
     environment:
       LANG: en_US.utf8
       POSTGRES_DB: txn-transaction-api
